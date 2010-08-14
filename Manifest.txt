@@ -1,0 +1,6 @@
+History.rdoc
+Manifest.txt
+README.rdoc
+Rakefile
+lib/jekyll-svg-plugin/base.rb
+lib/jekyll-svg-plugin.rb
