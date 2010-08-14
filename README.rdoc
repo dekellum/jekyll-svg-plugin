@@ -8,11 +8,38 @@ A plugin for adding an SVG liquid tag to Jekyll. This tag expands and
 SVG reference to object with dimensions obtains from an associated PNG
 file.
 
-== Synopsis
+== Usage
 
 Add the following to the file _plugin/svg.rb in your Jekyll site tree:
 
   require 'jekyll-svg-plugin'
+
+Then you can include an SVG reference HTML object via liquid tag:
+
+  {% svg svg/mygraph.svg %}
+
+Note that both an *.svg and *.png are expected at the specified
+location. The later is used as a fallback and also to obtain
+dimensions (via imagesize gem, pure ruby) from the png file.
+
+I typically use Graphviz dot to generate my SVG/PNG graphs, with a Rakefile like this:
+
+  directory 'svg'
+
+  FileList[ '_dot/*.dot' ].each do |dot|
+    svg = dot.sub( /(\.dot)$/, '.svg' ).sub( /^(_dot)/, 'svg' )
+    png = dot.sub( /(\.dot)$/, '.png' ).sub( /^(_dot)/, 'svg' )
+
+    file svg => [ dot, 'svg' ] do
+      sh "dot -Tsvg -o #{svg} #{dot}"
+    end
+
+    file png => [ dot, 'svg' ] do
+      sh "dot -Tpng -o #{png} #{dot}"
+    end
+
+    task :dot => [ svg, png ]
+  end
 
 == License
 
