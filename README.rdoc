@@ -10,7 +10,7 @@ file.
 
 == Synopsis
 
-Add the following to you Jekyll site _plugin/svg.rb:
+Add the following to the file _plugin/svg.rb in your Jekyll site tree:
 
   require 'jekyll-svg-plugin'
 
