@@ -57,7 +57,7 @@ module Jekyll
       <<END
 <div class="svg-object">
   <object data="#{@svg}" type="image/svg+xml" width="#{w}" height="#{h}">
-    <img src="#{png}" width="#{w}" height="#{h}">
+    <img src="#{png}" width="#{w}" height="#{h}" />
   </object>
 </div>
 END
