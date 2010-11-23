@@ -30,6 +30,7 @@ mime_types = WEBrick::HTTPUtils::DefaultMimeTypes
 mime_types.store 'svg', 'image/svg+xml'
 
 require 'image_size'
+
 module Jekyll
 
   class SvgTag < Liquid::Tag
@@ -40,7 +41,17 @@ module Jekyll
 
     def render(context)
       png = @svg.sub( /(\.svg)$/, '.png' )
-      w,h = open( png, 'rb' ) do |fpng|
+      png_file = png
+
+      # png file is relative to this page, if relative
+      unless png_file =~ %r{^/}
+        png_file = File.join( File.dirname( context[ 'page' ][ 'url' ] ), png )
+      end
+
+      # And found in the site source
+      png_file = File.join( context.registers[ :site ].source, png_file )
+
+      w,h = open( png_file, 'rb' ) do |fpng|
         ImageSize.new( fpng.read ).get_size
       end
       <<END
