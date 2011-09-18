@@ -11,7 +11,7 @@ t = RJack::TarPit.new( 'jekyll-svg-plugin', JekyllSVGPlugin::VERSION )
 
 t.specify do |h|
   h.developer( 'David Kellum', 'dek-oss@gravitext.com' )
-  h.extra_deps << [ 'imagesize', '>= 0.1.1' ]
+  h.extra_deps << [ 'image_size', '~> 1.0.3' ]
 end
 
 task :check_history_version do

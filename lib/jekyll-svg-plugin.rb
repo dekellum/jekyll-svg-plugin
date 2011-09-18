@@ -52,7 +52,7 @@ module Jekyll
       png_file = File.join( context.registers[ :site ].source, png_file )
 
       w,h = open( png_file, 'rb' ) do |fpng|
-        ImageSize.new( fpng.read ).get_size
+        ImageSize.new( fpng.read ).size
       end
       <<END
 <div class="svg-object">
