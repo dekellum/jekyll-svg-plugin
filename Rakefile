@@ -4,7 +4,7 @@ $LOAD_PATH << './lib'
 require 'jekyll-svg-plugin/base'
 
 require 'rubygems'
-gem     'rjack-tarpit', '~> 1.2.2'
+gem     'rjack-tarpit', '~> 1.3.3'
 require 'rjack-tarpit'
 
 t = RJack::TarPit.new( 'jekyll-svg-plugin', JekyllSVGPlugin::VERSION )
